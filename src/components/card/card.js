@@ -57,7 +57,7 @@ const Card = ({id, title, description, addCardHandler, deleteCardHandler }) => {
     }
  
     return showCard ? <div className="card" onDragStart={(e)=>{console.log(e)}} onDragLeave={(e)=>{console.log(e)}} draggable>
-            <div className='title'>
+            <div className='card-title'>
                 {isEditing ?
                     <input value={newTitle} onChange={changeTitleHandler} placeholder='Enter Title'/> 
                 : newTitle}
