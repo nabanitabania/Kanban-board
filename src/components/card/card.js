@@ -28,29 +28,44 @@ const Card = ({id, title, description, addCardHandler, deleteCardHandler }) => {
             title: newTitle,
             description: newDescription
         }
-        addCardHandler(newCardData);
+
+        if(newCardData.title !== "" && newCardData.description !== "") {
+            addCardHandler(newCardData);
+        }
     }
 
     const changeTitleHandler = (e) => {
         e.preventDefault();
-        setNewTitle(e.target.value);
+        if(e.target.value !== "") {
+            setNewTitle(e.target.value);
+        }     
     }
 
     const changeDescriptionHandler = (e) => {
         e.preventDefault();
-        setNewDescription(e.target.value);
-    }
+        if(e.target.value !== "") {
+            setNewDescription(e.target.value);
+        }
+    } 
+
+    let showCard = false;
     
-    return <div className="card">
+    if(isEditing) {
+        showCard = true;
+    } else {
+        showCard = title !== "" && description !== "";
+    }
+ 
+    return showCard ? <div className="card" onDragStart={(e)=>{console.log(e)}} onDragLeave={(e)=>{console.log(e)}} draggable>
             <div className='title'>
                 {isEditing ?
-                    <input value={newTitle} onChange={changeTitleHandler}/> 
+                    <input value={newTitle} onChange={changeTitleHandler} placeholder='Enter Title'/> 
                 : newTitle}
             </div>
             <div className='card-content'>
                 <div className='card-description'>
                     {isEditing ? 
-                    <textarea value={newDescription} onChange={changeDescriptionHandler}></textarea> :
+                    <textarea value={newDescription} onChange={changeDescriptionHandler} placeholder='Enter Description'></textarea> :
                     newDescription}
                 </div>
                 <div className='card-actions'>
@@ -62,7 +77,7 @@ const Card = ({id, title, description, addCardHandler, deleteCardHandler }) => {
                     </>}
                 </div>
             </div>
-        </div>
+        </div> : null;
 }
 
 export default Card;

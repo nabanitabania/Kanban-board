@@ -1,11 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Column from "../column/column";
 import './my-board.css';
+import axios from 'axios';
 
 
 const MyBoard = () => {
 
-    const [columns, setColumns] = useState(["To Do", "In Progress", "Done"]);
+    const [columns, setColumns] = useState([]);
+
+    const getColumns = async () => {
+        await axios.get('http://localhost:3001/api/columns')
+          .then(response => {
+            setColumns(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }
+
+    useEffect(() => {
+        getColumns();
+    }, []);
 
     const updateColumnTitle = (oldTitle, newTitle) => {
         const index = columns.indexOf(oldTitle);
