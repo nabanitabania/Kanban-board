@@ -1,0 +1,37 @@
+.my-board {
+    background-color: #ffffff;
+    height: auto;
+    width: 100%;
+}
+.my-board .board-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.my-board .board-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    font-size: x-large;
+    font-weight: bolder;
+    box-shadow: 0 0 3px 0 rgba(158, 156, 156, 0.2);
+}
+
+.save {
+    color: #4F6F52;
+}
+
+.delete {
+    color: #662549;
+}
+
+.edit {
+    color: #176B87;
+}
+
+.add {
+    color: #313866;
+}
